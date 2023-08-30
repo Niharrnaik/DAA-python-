@@ -10,9 +10,9 @@ class Graph:
         self.graph[v][u] = weight
 
     def print_mst(self, parent):
-        print("Thermal Station   --   Connected to   -->   Thermal Station   Cost")
+        print("Thermal Station -- Connected to --> Thermal Station Cost")
         for i in range(1, self.V):
-            print(f"   {i}                    --                    {parent[i]}                 {self.graph[i][parent[i]]}")
+            print(f" {i} -- {parent[i]} {self.graph[i][parent[i]]}")
 
     def prim_mst(self):
         key = [sys.maxsize] * self.V
@@ -41,7 +41,7 @@ class Graph:
         self.print_mst(parent)
 
 
-# Accepting user input
+
 n = int(input("Enter the number of thermal power stations: "))
 g = Graph(n)
 
@@ -51,5 +51,30 @@ for i in range(n):
         cost = int(input(f"Enter the cost between thermal station {i} and {j}: "))
         g.add_edge(i, j, cost)
 
-# Compute and display the minimum cost connection
+
 g.prim_mst()
+"""Enter the number of thermal power stations: 6
+Enter the cost of electrification for each connection:
+Enter the cost between thermal station 0 and 1: 3
+Enter the cost between thermal station 0 and 2: 0
+Enter the cost between thermal station 0 and 3: 0
+Enter the cost between thermal station 0 and 4: 6
+Enter the cost between thermal station 0 and 5: 3
+Enter the cost between thermal station 1 and 2: 1
+Enter the cost between thermal station 1 and 3: 6
+Enter the cost between thermal station 1 and 4: 0
+Enter the cost between thermal station 1 and 5: 4
+Enter the cost between thermal station 2 and 3: 6
+Enter the cost between thermal station 2 and 4: 0
+Enter the cost between thermal station 2 and 5: 4
+Enter the cost between thermal station 3 and 4: 1
+Enter the cost between thermal station 3 and 5: 5
+Enter the cost between thermal station 4 and 5: 2
+Thermal Station -- Connected to --> Thermal Station Cost
+ 1 -- 0 3
+ 2 -- 1 1
+ 3 -- 4 1
+ 4 -- 5 2
+ 5 -- 0 3
+ """
+ 
