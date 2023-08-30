@@ -41,17 +41,21 @@ def find_optimal_route(graph, start, destination):
     route.reverse()
     return route
 
-# Example usage
-graph = {
-    'A': {'B': 3, 'C': 99, 'D': 7, 'E': 99},
-    'B': {'A': 3, 'C': 4, 'D': 2, 'E': 99},
-    'C': {'A': 99, 'B': 4, 'D': 5, 'E': 6},
-    'D': {'A': 7, 'B': 2, 'C': 5, 'E': 4},
-    'E': {'A': 99, 'B': 99, 'C': 6, 'D': 4}
-}
+def get_graph_from_user():
+    graph = {}
+    num_nodes = int(input("Enter the number of nodes: "))
+    for i in range(num_nodes):
+        node = input(f"Enter node {i+1}: ")
+        graph[node] = {}
+        num_neighbors = int(input(f"Enter the number of neighbors for node {node}: "))
+        for j in range(num_neighbors):
+            neighbor, weight = input(f"Enter neighbor {j+1} and its weight for node {node} (separated by space): ").split()
+            graph[node][neighbor] = int(weight)
+    return graph
 
-start_location = 'A'
-destination_location = 'E'
+start_location = input("Enter the start location: ")
+destination_location = input("Enter the destination location: ")
+graph = get_graph_from_user()
 
 optimal_route = find_optimal_route(graph, start_location, destination_location)
 
