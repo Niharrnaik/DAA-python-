@@ -1,47 +1,51 @@
 class Job:
-    def __init__(self,Id,DL,P):
-        self.taskId=Id
-        self.deadline=DL
-        self.profit=P
-def scheduleJobs(jobs,T):
-    prft = 0
+    def __init__(self, taskId, deadline, profit):
+        self.taskId = taskId
+        self.deadline = deadline
+        self.profit = profit
+
+def schedulejobs(jobs, T):
+    profit=0
     slot=[-1]*T
-    jobs.sort(key=lambda x: x.profit,reverse=True)
-    for jobs in jobs:
-        for j in reversed(range(min(T,jobs.deadline))):
+    jobs.sort(key=lambda x: x.profit, reverse=True)
+    for job in jobs:
+        for j in reversed(range(min(T, job.deadline))):
             if slot[j]==-1:
-                slot[j]=jobs.taskId
-                prft+=jobs.profit
-                break
-    print("The scheduled jobs are: ",list(filter(lambda x:x!=-1,slot)))
-    print("Total profit: ",prft)
-if __name__=='__main__':
-    n=int(input("Enter the no of jobs: "))
-    jobs=[]
-    for i in range (n):
-        taskId=input("Enter the taskId for job {}:".format(i+1))
-        deadline=int(input("Enter the deadline for job {}:".format(i+1)))
-        profit=int(input("Enter the profit for job {}:".format(i+1)))
-        jobs.append(Job(taskId,deadline,profit))
-    T=int(input("Enter the total time: "))
-    scheduleJobs(jobs,T)
-    /*OUTPUT
-    Enter the no of jobs: 5
-Enter the taskId for job 1:1
-Enter the deadline for job 1:2
-Enter the profit for job 1:20
-Enter the taskId for job 2:2
-Enter the deadline for job 2:2
-Enter the profit for job 2:15
-Enter the taskId for job 3:3
-Enter the deadline for job 3:1
-Enter the profit for job 3:10
-Enter the taskId for job 4:4
-Enter the deadline for job 4:3
-Enter the profit for job 4:5
-Enter the taskId for job 5:5
-Enter the deadline for job 5:3
-Enter the profit for job 5:1
+                slot[j]=job.taskId
+                profit += job.profit
+                break 
+    print("The scheduled jobs are",list(filter(lambda x: x !=-1,slot)))
+    print("The total profit earned is",profit) 
+
+if __name__ =='__main__':   
+    n = int(input("Enter the number of jobs: "))
+    jobs = []
+    for i in range(n):
+        taskId = input("Enter task ID for job {}: ".format(i+1))
+        deadline = int(input("Enter deadline for job {}: ".format(i+1)))
+        profit = int(input("Enter profit for job {}: ".format(i+1)))
+        jobs.append(Job(taskId, deadline, profit))
+    T = int(input("Enter the total time: "))
+    schedulejobs(jobs, T)
+    /*
+"""Enter the number of jobs: 5
+Enter task ID for job 1: 1
+Enter deadline for job 1: 20
+Enter profit for job 1: 20
+Enter task ID for job 2: 2
+Enter deadline for job 2: 2
+Enter profit for job 2: 15
+Enter task ID for job 3: 3
+Enter deadline for job 3: 1
+Enter profit for job 3: 10
+Enter task ID for job 4: 4
+Enter deadline for job 4: 3
+Enter profit for job 4: 5
+Enter task ID for job 5: 5
+Enter deadline for job 5: 3
+Enter profit for job 5: 1
 Enter the total time: 3
-The scheduled jobs are:  ['2', '1', '4']
-Total profit:  40 */
+The scheduled jobs are ['3', '2', '1']
+The total profit earned is 45
+"""
+/*
